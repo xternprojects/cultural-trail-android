@@ -1,9 +1,12 @@
-package com.xtern.cultural_trail;
+package com.xtern.cultural_trail.activities;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.xtern.cultural_trail.R;
+import com.xtern.cultural_trail.fragments.IssuesListFragment;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -14,7 +17,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container,new MainActivityFragment())
+                .replace(R.id.fragment_container,new IssuesListFragment())
                 .addToBackStack(null)
                 .commit();
     }
