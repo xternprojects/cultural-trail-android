@@ -3,6 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/cultural_trail_dark_blue</item>
+        <item name="colorPrimaryDark">@color/cultural_trail_light_blue</item>
     </style>
-
 </resources>
