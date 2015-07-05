@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="cultural_trail_light_blue" type="color">#02568a</item>
-    <item name="cultural_trail_dark_blue" type="color">#06a7e1</item>
-    <item name="cultural_trail_light_green" type="color">#45812b</item>
+    <item name="cultural_trail_light_blue" type="color">#02568A</item>
+    <item name="cultural_trail_dark_blue" type="color">#014067</item>
+    <item name="cultural_trail_light_green" type="color">#A2C02F</item>
+    <item name="cultural_trail_green_pressed" type="color">#BED36D</item>
 </resources>
