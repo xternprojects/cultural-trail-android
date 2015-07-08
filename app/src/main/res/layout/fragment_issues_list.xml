@@ -3,7 +3,10 @@
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_below="@+id/tool_bar"
     tools:context="com.xtern.cultural_trail.fragments.IssuesListFragment">
+
+
 
     <com.dexafree.materialList.view.MaterialListView
         android:layout_width="fill_parent"

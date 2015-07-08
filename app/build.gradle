@@ -3,7 +3,6 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 22
     buildToolsVersion "21.1.2"
-
     defaultConfig {
         applicationId "com.xtern.cultural_trail"
         minSdkVersion 16
@@ -28,4 +27,5 @@ dependencies {
     compile 'com.github.dexafree:materiallist:2.4.3'
     compile 'joda-time:joda-time:2.8.1'
     compile 'com.getbase:floatingactionbutton:1.9.1'
+    compile 'com.android.support:design:22.2.0'
 }
