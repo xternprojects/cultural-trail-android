@@ -4,16 +4,17 @@
     android:id="@+id/main_activity_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <include
-        android:id="@+id/tool_bar"
-        layout="@layout/cultural_trail_toolbar">
 
-    </include>
 
     <RelativeLayout
         android:id="@+id/fragment_container"
         android:layout_height="match_parent"
         android:layout_width="match_parent">
+
+        <include
+            android:id="@+id/tool_bar"
+            layout="@layout/cultural_trail_toolbar">
+        </include>
 
     </RelativeLayout>
 </LinearLayout>
