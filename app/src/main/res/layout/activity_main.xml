@@ -12,7 +12,6 @@
         android:layout_width="match_parent">
 
         <include
-            android:id="@+id/tool_bar"
             layout="@layout/cultural_trail_toolbar">
         </include>
 

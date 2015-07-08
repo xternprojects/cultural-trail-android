@@ -16,6 +16,6 @@ public interface CulturalTrailAPI {
     @GET("/issues")
     void getIssues(Callback<List<Issue>> callback);
 
-    @POST("/issue")
+    @POST("/issues")
     void postIssue(@Body Issue newIssue, Callback<Void> callback);
 }

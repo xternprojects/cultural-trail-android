@@ -7,10 +7,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
@@ -18,6 +22,7 @@ import com.xtern.cultural_trail.R;
 import com.xtern.cultural_trail.interfaces.CulturalTrailAPI;
 import com.xtern.cultural_trail.models.CulturalTrailRestClient;
 import com.xtern.cultural_trail.models.Issue;
+import com.xtern.cultural_trail.models.Location;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
@@ -34,6 +39,7 @@ public class CreateIssueFragment extends Fragment {
     private EditText issueDescriptionField;
     private RadioGroup priorityOptionsField;
     private EditText reportedByField;
+    private Button createIssueButton;
 
     public static CreateIssueFragment newInstance() {
         CreateIssueFragment fragment = new CreateIssueFragment();
@@ -50,8 +56,19 @@ public class CreateIssueFragment extends Fragment {
         issueDescriptionField = (EditText) v.findViewById(R.id.issue_description_et);
         priorityOptionsField = (RadioGroup) v.findViewById(R.id.priority_option_rg);
         reportedByField = (EditText) v.findViewById(R.id.reported_by_et);
+        createIssueButton = (Button)v.findViewById(R.id.create_issue_button);
+
+        createIssueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createNewIssue();
+            }
+        });
+
+
         return v;
     }
+
 
     public void getLocation(){
 
@@ -63,7 +80,8 @@ public class CreateIssueFragment extends Fragment {
         String reportedBy = reportedByField.getText().toString();
         int priority = priorityOptionsField.getCheckedRadioButtonId();
         LocalDate localDate = new LocalDate();
-        Issue newIssue = new Issue(issueName, issueDescription, priority, true, null, localDate.toString(), null);
+        Location location = new Location(120.45,120.45);
+        Issue newIssue = new Issue(issueName, issueDescription, priority, true, location, localDate.toString(), localDate.toString());
         submitIssue(newIssue);
 
     }
@@ -81,5 +99,11 @@ public class CreateIssueFragment extends Fragment {
                 Log.d("API", "Failure " + error.getResponse().toString());
             }
         });
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_issue_create, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 }
