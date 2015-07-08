@@ -53,7 +53,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Crete Issue"
+        android:text="Create Issue"
         android:id="@+id/create_issue_button"
         android:layout_below="@+id/reported_by_et"
         android:layout_alignParentLeft="true"

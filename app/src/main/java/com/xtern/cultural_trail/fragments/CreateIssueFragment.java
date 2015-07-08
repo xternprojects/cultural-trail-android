@@ -83,7 +83,6 @@ public class CreateIssueFragment extends Fragment {
         Location location = new Location(120.45,120.45);
         Issue newIssue = new Issue(issueName, issueDescription, priority, true, location, localDate.toString(), localDate.toString());
         submitIssue(newIssue);
-
     }
 
 
