@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="com.xtern.cultural_trail.fragments.CreateIssueFragment">
+
+    <EditText
+        android:id="@+id/issue_name_et"
+        android:hint="Issue Name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/issue_description_et"
+        android:hint="Issue Description"
+        android:layout_below="@id/issue_name_et"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/priority_option_tv"
+        android:text="Priority:"
+        android:layout_below="@id/issue_description_et"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <RadioGroup
+        android:id="@+id/priority_option_rg"
+        android:layout_below="@id/priority_option_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/high_priority_rb"
+            android:text="High Priority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:id="@+id/low_priority_rb"
+            android:text="Low Priority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/reported_by_et"
+        android:hint="Reported By"
+        android:layout_below="@id/priority_option_rg"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+
+
+
+
+
+</RelativeLayout>
