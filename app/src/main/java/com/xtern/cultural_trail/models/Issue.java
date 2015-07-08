@@ -4,10 +4,12 @@ import android.util.Log;
 
 import org.joda.time.DateTime;
 
+import java.io.Serializable;
+
 /**
  * Created by kyle on 6/29/15.
  */
-public class Issue {
+public class Issue implements Serializable {
     public final String name;
     public final String description;
     public final int priority;

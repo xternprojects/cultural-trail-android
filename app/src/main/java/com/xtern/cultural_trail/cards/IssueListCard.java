@@ -22,6 +22,7 @@ public class IssueListCard extends SimpleCard {
     private int buttonTextColor = Color.BLACK;
     private int priority;
 
+
     public IssueListCard(final Context context) {
         super(context);
     }
