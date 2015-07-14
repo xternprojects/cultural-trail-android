@@ -59,5 +59,14 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Take Pictue"
+        android:id="@+id/take_picture_button"
+        android:layout_below="@+id/reported_by_et"
+        android:layout_centerHorizontal="true"
+        android:layout_alignBottom="@+id/create_issue_button" />
+
 
 </RelativeLayout>
