@@ -15,6 +15,7 @@ import com.xtern.cultural_trail.R;
 public class MainActivityFragment extends Fragment {
 
     public MainActivityFragment() {
+
     }
 
     @Override
