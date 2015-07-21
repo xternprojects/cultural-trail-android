@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -59,7 +60,10 @@ public class IssueDetailFragment extends Fragment {
 
         final Toolbar toolbar = (Toolbar) v.findViewById(R.id.toolbar);
 
-        collapsingToolbar = (CollapsingToolbarLayout) v.findViewById(R.id.collapsing_toolbar);
+        NestedScrollView sv =(NestedScrollView)v.findViewById(R.id.scrollView);
+        sv.setNestedScrollingEnabled(false);
+
+
 
 
         ImageView header = (ImageView) v.findViewById(R.id.header);
@@ -93,7 +97,7 @@ public class IssueDetailFragment extends Fragment {
                 .appendPath("api")
                 .appendPath("staticmap")
                 .appendQueryParameter("scale","1")
-                .appendQueryParameter("size","450x400")
+                .appendQueryParameter("size","400x100")
                 .appendQueryParameter("maptype", "roadmap")
                 .appendQueryParameter("markers", "size:mid|color:red|label:1|" + issue.location.lat + "," + issue.location.lng);
 
