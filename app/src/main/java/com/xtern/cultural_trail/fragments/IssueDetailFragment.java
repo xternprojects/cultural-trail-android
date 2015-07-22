@@ -3,6 +3,7 @@ package com.xtern.cultural_trail.fragments;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
@@ -10,6 +11,8 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -50,6 +53,8 @@ public class IssueDetailFragment extends Fragment {
     }
 
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -59,6 +64,9 @@ public class IssueDetailFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_issue_detail, container, false);
 
         final Toolbar toolbar = (Toolbar) v.findViewById(R.id.toolbar);
+        toolbar.setTitle("Issue Detail");
+        toolbar.setNavigationIcon(R.drawable.ic_action_back);
+        toolbar.inflateMenu(R.menu.menu_issue_create);
 
         NestedScrollView sv =(NestedScrollView)v.findViewById(R.id.scrollView);
         sv.setNestedScrollingEnabled(false);
@@ -87,7 +95,9 @@ public class IssueDetailFragment extends Fragment {
 
         location.setText("410 Limestone");
 
+
         priority.setText("Priority " + issue.priority);
+        priority.setTextColor(Color.RED);
         reported.setText("Reported by Ben Wencke");
 
         Uri.Builder uriBuilder = new Uri.Builder();

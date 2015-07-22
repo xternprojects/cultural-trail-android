@@ -3,6 +3,26 @@
     xmlns:fab="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:theme="@style/ActionBarThemeOverlay"
+        app:popupTheme="@style/ActionBarPopupThemeOverlay"/>
+        <ImageView
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="235dp"
+            android:background="@drawable/header"
+            android:scaleType="centerCrop"/>
+    </android.support.design.widget.AppBarLayout>
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -12,12 +32,6 @@
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <android.support.v7.widget.CardView
-                card_view:cardUseCompatPadding="true"
-                android:id="@+id/map_card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -40,11 +54,11 @@
                         android:id="@+id/map_image_view" />
 
                     <LinearLayout
+                        android:id="@+id/map_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:layout_below="@id/map_image_view">
-
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -55,76 +69,54 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/location_text_view"
+                            android:textColor="@color/cultural_trail_dark_blue"
                             android:textSize="12sp"/>
                     </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/priority_layout"
+                        android:layout_below="@id/map_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/priority_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/priority"/>
+
+                        <TextView
+                            android:id="@+id/priority_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_below="@+id/priority_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/clipboard"/>
+
+                        <TextView
+                            android:id="@+id/reported_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Reported By Ben"/>
+                    </LinearLayout>
                 </RelativeLayout>
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                card_view:cardUseCompatPadding="true"
-                android:id="@+id/priority_card"
-                android:layout_below="@id/map_card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/priority"/>
-
-                    <TextView
-                        android:id="@+id/priority_text_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                card_view:cardUseCompatPadding="true"
-                android:id="@+id/reported_card"
-                android:layout_below="@+id/priority_card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/clipboard"/>
-
-                    <TextView
-                        android:id="@+id/reported_text_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Reported By Ben"/>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="280dp"
-        android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-            <ImageView
-                android:id="@+id/header"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/header"
-                android:scaleType="centerCrop"/>
-    </android.support.design.widget.AppBarLayout>
     <android.support.design.widget.FloatingActionButton
-    android:layout_height="wrap_content"
-    android:layout_width="wrap_content"
-    app:layout_anchor="@id/appbar"
-    app:layout_anchorGravity="bottom|right|end"
-    android:src="@drawable/ic_action_content_new"
-    android:layout_margin="@dimen/fab_margin"
-    android:clickable="true"/>
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:layout_anchor="@id/appbar"
+        app:backgroundTint="@color/cultural_trail_light_green"
+        app:layout_anchorGravity="bottom|right|end"
+        android:src="@drawable/check"
+        android:layout_margin="@dimen/fab_margin"
+        android:clickable="true"/>
 </android.support.design.widget.CoordinatorLayout>
