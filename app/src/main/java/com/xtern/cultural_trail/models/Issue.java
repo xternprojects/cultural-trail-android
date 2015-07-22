@@ -17,9 +17,10 @@ public class Issue implements Serializable {
     public final Location location;
     public final String reportedDate;
     public final String resolvedDate;
+    public final String picture;
 
 
-    public Issue(String name, String description, int priority, boolean open, Location location, String reportedDate, String resolvedDate) {
+    public Issue(String name, String description, int priority, boolean open, Location location, String reportedDate, String resolvedDate, String picture) {
         this.name = name;
         this.description = description;
         this.priority = priority;
@@ -27,5 +28,6 @@ public class Issue implements Serializable {
         this.location = location;
         this.reportedDate = reportedDate;
         this.resolvedDate = resolvedDate;
+        this.picture = picture;
     }
 }

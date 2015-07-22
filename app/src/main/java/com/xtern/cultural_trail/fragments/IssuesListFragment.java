@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.dexafree.materialList.controller.RecyclerItemClickListener;
 import com.dexafree.materialList.model.CardItemView;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.xtern.cultural_trail.R;
 import com.xtern.cultural_trail.cards.IssueListCard;
 import com.xtern.cultural_trail.models.CulturalTrailRestClient;
@@ -42,11 +43,11 @@ public class IssuesListFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_issues_list, container, false);
         materialListView = (MaterialListView)v.findViewById(R.id.material_listview);
-        materialListView.addOnItemTouchListener(new RecyclerItemClickListener.OnItemClickListener(){
+        materialListView.addOnItemTouchListener(new RecyclerItemClickListener.OnItemClickListener() {
 
             @Override
             public void onItemClick(CardItemView cardItemView, int i) {
-                Issue issue = (Issue)cardItemView.getTag();
+                Issue issue = (Issue) cardItemView.getTag();
                 Log.d("clicked", issue.name);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("issue", issue);
@@ -63,10 +64,21 @@ public class IssuesListFragment extends Fragment {
 
             @Override
             public void onItemLongClick(CardItemView cardItemView, int i) {
-
             }
         });
-                initIssuesList();
+        initIssuesList();
+        FloatingActionButton floatingActionButton = (FloatingActionButton)v.findViewById(R.id.fab);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container,new CreateIssueFragment())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
         return v;
     }
 
