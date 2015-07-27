@@ -1,8 +1,11 @@
 package com.xtern.cultural_trail.fragments;
 
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +19,7 @@ import com.xtern.cultural_trail.cards.IssueListCard;
 import com.xtern.cultural_trail.models.CulturalTrailRestClient;
 import com.xtern.cultural_trail.models.Issue;
 
+import java.io.IOException;
 import java.util.List;
 
 import retrofit.Callback;
@@ -91,8 +95,17 @@ public class IssuesListFragment extends Fragment {
                     issueListCard.setTag(issue);
                     issueListCard.setTitle(issue.name);
                     issueListCard.setDescription(issue.description);
-                    issueListCard.setSubtitle(DateTime.parse(issue.reportedDate).toString("dd, MMM YYYY h:mm a"));
-                    issueListCard.setPriority(issue.priority);
+                    issueListCard.setImageUrl(issue.picture);
+                    Geocoder geocoder = new Geocoder(getActivity());
+                    if(geocoder.isPresent()){
+                        try {
+                            Address address = geocoder.getFromLocation(issue.location.lat,issue.location.lng,1).get(0);
+                            String addressString = address.getAddressLine(0)+" " + address.getAdminArea() +"," + address.getLocality()+ " " + address.getPostalCode();
+                            issueListCard.setLocation(addressString);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     materialListView.add(issueListCard);
 
                 }

@@ -19,8 +19,10 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Issues");
+        toolbar.setNavigationIcon(R.drawable.menu);
+        toolbar.inflateMenu(R.menu.menu_main);
         performFragmentTransaction(new IssuesListFragment());
     }
 
