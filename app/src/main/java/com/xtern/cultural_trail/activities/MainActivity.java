@@ -1,47 +1,69 @@
 package com.xtern.cultural_trail.activities;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.gson.Gson;
+import com.parse.Parse;
+import com.parse.ParseUser;
 import com.xtern.cultural_trail.R;
 import com.xtern.cultural_trail.fragments.IssuesListFragment;
+import com.xtern.cultural_trail.fragments.SplashFragment;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
+
+    ParseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Parse.enableLocalDatastore(this);
+        Parse.initialize(this, "kBcWHoqqo1z6eUGreebgI5gcb1rxBPgmdaFpW4lf", "WBY96ta7jVdnq0p2sd4PlMg2ANc91Z2SJVMGUDYs");
         setContentView(R.layout.activity_main);
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container,new IssuesListFragment())
-                .addToBackStack(null)
+                .replace(R.id.fragment_container, SplashFragment.newInstance())
                 .commit();
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public void setCurrentUser(ParseUser user){
+        Gson gson = new Gson();
+        String json = gson.toJson(user);
+        SharedPreferences sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("CurrentUser", json);
+        editor.apply();
+        this.currentUser = user;
+    }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+    public ParseUser getCurrentUser(){
+        SharedPreferences sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("CurrentUser", "");
+        currentUser = gson.fromJson(json, ParseUser.class);
+        return currentUser;
+    }
 
-        return super.onOptionsItemSelected(item);
+
+    public void performFragmentTransaction(Fragment fragment){
+       getSupportFragmentManager()
+               .beginTransaction()
+               .replace(R.id.fragment_container, fragment)
+               .addToBackStack(null)
+               .commit();
     }
 }

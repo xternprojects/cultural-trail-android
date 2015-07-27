@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.xtern.cultural_trail.fragments.SignUpFragment">
+
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/signup_username_edittext"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:editable="true"
+        android:hint="Username"
+        android:singleLine="true" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/signup_password_edittext"
+        android:layout_below="@+id/signup_username_edittext"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:editable="true"
+        android:hint="Password"
+        android:password="true"
+        android:singleLine="true" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/signup_confirm_edittext"
+        android:layout_below="@+id/signup_password_edittext"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:editable="true"
+        android:hint="Confirm Password"
+        android:singleLine="true"
+        android:password="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:id="@+id/signup_button"
+        android:layout_below="@+id/signup_confirm_edittext"
+        android:layout_centerHorizontal="true"
+        android:clickable="true" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/signup_error_textview"
+        android:layout_above="@+id/signup_username_edittext"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:gravity="center"
+        android:textColor="#ff0000"
+        android:textSize="25dp" />
+
+</RelativeLayout>
