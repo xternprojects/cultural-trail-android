@@ -6,16 +6,30 @@
     android:orientation="horizontal"
     tools:context="com.xtern.cultural_trail.fragments.CreateIssueFragment">
 
+    <TextView
+        android:id="@+id/issue_name_tv"
+        android:text="Issue Name:"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"/>
+
     <EditText
         android:id="@+id/issue_name_et"
-        android:hint="Issue Name"
+        android:layout_below="@+id/issue_name_tv"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
 
+    <TextView
+        android:id="@+id/issue_description_tv"
+        android:text="Issue Description:"
+        android:layout_below="@id/issue_name_et"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
+
     <EditText
         android:id="@+id/issue_description_et"
-        android:hint="Issue Description"
-        android:layout_below="@id/issue_name_et"
+        android:layout_below="@id/issue_description_tv"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
 
@@ -24,11 +38,23 @@
         android:text="Priority:"
         android:layout_below="@id/issue_description_et"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/priority_tv"
+        android:text="Low Priority"
+        android:layout_below="@id/priority_option_tv"
+        android:textSize="22dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="onClick"
+        android:clickable="true"/>
 
     <RadioGroup
         android:id="@+id/priority_option_rg"
-        android:layout_below="@id/priority_option_tv"
+        android:layout_below="@id/priority_tv"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
         <RadioButton
@@ -43,10 +69,17 @@
             android:layout_height="wrap_content" />
     </RadioGroup>
 
+    <TextView
+        android:id="@+id/reported_by_tv"
+        android:text="Reported By"
+        android:layout_below="@id/priority_option_rg"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"/>
+
     <EditText
         android:id="@+id/reported_by_et"
-        android:hint="Reported By"
-        android:layout_below="@id/priority_option_rg"
+        android:layout_below="@id/reported_by_tv"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
 
@@ -66,7 +99,8 @@
         android:id="@+id/take_picture_button"
         android:layout_below="@+id/reported_by_et"
         android:layout_centerHorizontal="true"
-        android:layout_alignBottom="@+id/create_issue_button" />
+        android:layout_alignBottom="@+id/create_issue_button"
+        android:background="@color/cultural_trail_light_green"/>
 
 
 </RelativeLayout>

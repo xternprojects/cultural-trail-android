@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.cloudinary.Cloudinary;
 import com.google.android.gms.common.ConnectionResult;
@@ -36,6 +37,7 @@ import com.xtern.cultural_trail.tasks.UploadImageTask;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -57,6 +59,7 @@ public class CreateIssueFragment extends Fragment implements GoogleApiClient.Con
     private EditText issueNameField;
     private EditText issueDescriptionField;
     private RadioGroup priorityOptionsField;
+    private TextView priorityTextView;
     private EditText reportedByField;
     private Button createIssueButton;
     private Button takePictureButton;
@@ -87,6 +90,7 @@ public class CreateIssueFragment extends Fragment implements GoogleApiClient.Con
         issueNameField = (EditText) v.findViewById(R.id.issue_name_et);
         issueDescriptionField = (EditText) v.findViewById(R.id.issue_description_et);
         priorityOptionsField = (RadioGroup) v.findViewById(R.id.priority_option_rg);
+        priorityTextView = (TextView) v.findViewById(R.id.priority_tv);
         reportedByField = (EditText) v.findViewById(R.id.reported_by_et);
         createIssueButton = (Button)v.findViewById(R.id.create_issue_button);
         takePictureButton =(Button)v.findViewById(R.id.take_picture_button);
@@ -106,9 +110,18 @@ public class CreateIssueFragment extends Fragment implements GoogleApiClient.Con
             }
         });
 
-
-
-
+        priorityTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String current_priority = priorityTextView.getText().toString();
+                if(current_priority.equals("Low Priority")) {
+                    priorityTextView.setText("High Priority");
+                }
+                else {
+                    priorityTextView.setText("Low Priority");
+                }
+            }
+        });
 
         return v;
     }
@@ -135,6 +148,7 @@ public class CreateIssueFragment extends Fragment implements GoogleApiClient.Con
         int priorityId = priorityOptionsField.getCheckedRadioButtonId();
         RadioButton rb  = (RadioButton)getActivity().findViewById(priorityId);
         int priority = rb.getText().toString().equals("High Priority") ? 1 :0;
+        int priority_test = priorityTextView.getText().toString().equals("High Priority") ? 1:0;
         LocalDate localDate = new LocalDate();
         android.location.Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
@@ -144,7 +158,7 @@ public class CreateIssueFragment extends Fragment implements GoogleApiClient.Con
         }
 
 
-        Issue newIssue = new Issue(issueName, issueDescription, priority, true, location, localDate.toString(), localDate.toString(), cloudinary.url().generate(imageName));
+        Issue newIssue = new Issue(issueName, issueDescription, priority_test, true, location, localDate.toString(), localDate.toString(), cloudinary.url().generate(imageName));
         submitIssue(newIssue);
     }
 
