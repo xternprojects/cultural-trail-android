@@ -70,9 +70,10 @@
                     android:id="@+id/location_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/map_marker_black"
+                    android:src="@drawable/ic_location_on_black_24dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:tint="@color/cultural_trail_dark_blue"
                     android:layout_alignParentTop="true" />
                 <TextView
                     android:id="@+id/location_text_view"
