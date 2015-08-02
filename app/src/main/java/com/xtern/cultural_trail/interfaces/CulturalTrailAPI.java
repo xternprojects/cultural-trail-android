@@ -1,5 +1,6 @@
 package com.xtern.cultural_trail.interfaces;
 
+import com.pnikosis.materialishprogress.ProgressWheel;
 import com.xtern.cultural_trail.models.Issue;
 import com.xtern.cultural_trail.models.PhotoAuth;
 

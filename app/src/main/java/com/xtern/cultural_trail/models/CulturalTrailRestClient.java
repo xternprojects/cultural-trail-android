@@ -24,7 +24,7 @@ public class CulturalTrailRestClient {
     private static void setupRestClient() {
         RestAdapter.Builder builder = new RestAdapter.Builder()
                 .setEndpoint(API_ROOT)
-                .setLogLevel(RestAdapter.LogLevel.FULL);
+                .setLogLevel(RestAdapter.LogLevel.BASIC);
 
         RestAdapter restAdapter = builder.build();
         REST_CLIENT = restAdapter.create(CulturalTrailAPI.class);

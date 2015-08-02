@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.koushikdutta.ion.Ion;
+import com.squareup.picasso.Picasso;
 import com.xtern.cultural_trail.R;
 import com.xtern.cultural_trail.adapters.IssueDetailAdapter;
 import com.xtern.cultural_trail.models.Issue;
@@ -111,11 +112,15 @@ public class IssueDetailFragment extends Fragment {
                 .appendQueryParameter("maptype", "roadmap")
                 .appendQueryParameter("markers", "size:mid|color:red|label:1|" + issue.location.lat + "," + issue.location.lng);
 
+        Log.d(TAG,"MapImg " + uriBuilder.build().toString());
+
 
 
         ImageView mapImageView = (ImageView)v.findViewById(R.id.map_image_view);
-        Ion.with(mapImageView)
-                .load(uriBuilder.build().toString());
+        Picasso
+                .with(getActivity())
+                .load(uriBuilder.build().toString())
+                .into(mapImageView);
 
         Geocoder geocoder = new Geocoder(getActivity());
         if(geocoder.isPresent()){

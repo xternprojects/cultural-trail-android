@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.dexafree.materialList.model.CardItemView;
 import com.koushikdutta.ion.Ion;
+import com.squareup.picasso.Picasso;
 import com.xtern.cultural_trail.R;
 
 /**
@@ -42,7 +43,11 @@ public class IssueListCardItemView extends CardItemView<IssueListCard> {
         description.setText(card.getDescription());
 
         ImageView issuePicture = (ImageView)findViewById(R.id.issue_image);
-        Ion.with(issuePicture).load(card.getImageUrl());
+        Picasso
+                .with(getContext())
+                .load(card.getImageUrl())
+                .into(issuePicture);
+        //Ion.with(issuePicture).load(card.getImageUrl());
 
         TextView location =(TextView)findViewById(R.id.location_text_view);
         location.setText(card.getLocation());
