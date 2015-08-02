@@ -46,6 +46,8 @@ dependencies {
     compile 'com.cloudinary:cloudinary-core:1.2.1'
     compile 'com.cloudinary:cloudinary-android:1.2.1'
     compile 'com.android.support:multidex:1.0.0'
+    compile 'com.pnikosis:materialish-progress:1.5'
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }
 
 configurations {

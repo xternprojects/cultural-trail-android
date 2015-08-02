@@ -7,6 +7,13 @@
     android:layout_below="@+id/toolbar"
     tools:context="com.xtern.cultural_trail.fragments.IssuesListFragment">
 
+    <com.pnikosis.materialishprogress.ProgressWheel
+        android:id="@+id/progress_wheel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+
 
     <com.dexafree.materialList.view.MaterialListView
         android:layout_width="fill_parent"
