@@ -8,9 +8,12 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dexafree.materialList.model.CardItemView;
+import com.koushikdutta.ion.Ion;
+import com.squareup.picasso.Picasso;
 import com.xtern.cultural_trail.R;
 
 /**
@@ -33,33 +36,19 @@ public class IssueListCardItemView extends CardItemView<IssueListCard> {
     public void build(final IssueListCard card) {
         super.build(card);
 
-        //Ttitle
-        TextView title = (TextView)findViewById(R.id.titleTextView);
+        TextView title = (TextView)findViewById(R.id.issue_name_text_view);
         title.setText(card.getTitle());
-        title.setTextColor(card.getTitleColor());
 
-
-
-        // Subtitle
-        TextView subtitle = (TextView) findViewById(R.id.subtitleTextView);
-        subtitle.setText(card.getSubtitle());
-        subtitle.setTextColor(card.getSubtitleColor());
-
-        //Description
-        TextView description = (TextView)findViewById(R.id.descriptionTextView);
+        TextView description = (TextView)findViewById(R.id.issue_text);
         description.setText(card.getDescription());
-        description.setTextColor(card.getDescriptionColor());
-
-        //Priority
-        TextView priority = (TextView)findViewById(R.id.priority_text_view);
-        priority.setText("Priority: " + card.getPriority());
-        priority.setTextColor(card.getPriorityColor());
 
 
-        // Divider
-        View divider = findViewById(R.id.cardDivider);
-        divider.setBackgroundColor(card.getDividerColor());
+        ImageView issuePicture = (ImageView)findViewById(R.id.issue_image);
 
+        Ion.with(issuePicture).load(card.getImageUrl());
+
+        TextView location =(TextView)findViewById(R.id.location_text_view);
+        location.setText(card.getLocation());
 
     }
 

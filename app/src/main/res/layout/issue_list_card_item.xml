@@ -4,73 +4,91 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/issue_list_card_item"
-    style="@style/MainLayout">
+    style="@style/MainLayout"
+    android:focusable="false">
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardView"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        card_view:cardCornerRadius="@dimen/card_corner_radius"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginBottom="5dp"
         style="@style/MainCardView">
-
-        <LinearLayout
-            android:orientation="vertical"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/issue_image"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/header"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:src="@drawable/bottom_gradient"
+                android:layout_alignLeft="@id/issue_image"
+                android:layout_alignBottom="@id/issue_image" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/titleTextView"
-                android:padding="@dimen/big_padding"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/bigger_title_size"
-                tools:text="This is the title"/>
-
+                android:layout_gravity="center_horizontal"
+                android:padding="18dp"
+                android:paddingBottom="10dp"
+                android:text="SomeText"
+                android:textSize="24sp"
+                android:shadowColor="#000"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="10"
+                android:layout_alignBottom="@id/issue_image"
+                android:id="@+id/issue_name_text_view"
+                android:textColor="#ffffffff" />
             <TextView
+                android:layout_below="@+id/issue_image"
+                android:id="@+id/issue_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/subtitleTextView"
-                android:textColor="@android:color/black"
-                android:paddingTop="@dimen/small_padding"
-                android:paddingLeft="@dimen/big_padding"
-                android:paddingRight="@dimen/big_padding"
-                android:textSize="@dimen/subtitle_size"
-                android:textStyle="bold"
-                tools:text="I am the subtitle"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/descriptionTextView"
-                android:textColor="@android:color/black"
-                android:paddingBottom="@dimen/big_padding"
-                android:paddingRight="@dimen/big_padding"
-                android:paddingLeft="@dimen/big_padding"
-                android:paddingTop="@dimen/small_padding"
-                android:textSize="@dimen/description_size"
-                tools:text="And this is the description"/>
-
+                android:text="There is an issue here"
+                android:padding="18dp"
+                android:textSize="14sp"/>
             <View
+                android:layout_below="@+id/issue_text"
                 android:id="@+id/cardDivider"
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="@color/divider_white"
-                android:layout_marginLeft="@dimen/big_padding"
-                android:layout_marginRight="@dimen/big_padding"
                 android:visibility="visible"/>
-
-            <TextView
+            <RelativeLayout
+                android:layout_below="@+id/cardDivider"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:id="@+id/priority_text_view"
-                android:clickable="true"
-                android:focusable="false"
-                android:textStyle="bold"
-                android:padding="@dimen/big_padding"
-                android:drawablePadding="@dimen/big_padding"
-                style="@style/LeftButtonBaseStyle"
-                tools:text="CLICK ME"/>
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:padding="18dp"
+                android:paddingTop="10dp">
+                <ImageView
+                    android:id="@+id/location_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/map_marker_black"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentTop="true" />
+                <TextView
+                    android:id="@+id/location_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GPS LOCATION"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/cultural_trail_dark_blue"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/location_icon"
+                    android:layout_toStartOf="@+id/location_icon" />
 
+            </RelativeLayout>
+
+        </RelativeLayout>
     </android.support.v7.widget.CardView>
 </com.xtern.cultural_trail.cards.IssueListCardItemView>
