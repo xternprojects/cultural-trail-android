@@ -42,12 +42,10 @@ public class IssueListCardItemView extends CardItemView<IssueListCard> {
         TextView description = (TextView)findViewById(R.id.issue_text);
         description.setText(card.getDescription());
 
+
         ImageView issuePicture = (ImageView)findViewById(R.id.issue_image);
-        Picasso
-                .with(getContext())
-                .load(card.getImageUrl())
-                .into(issuePicture);
-        //Ion.with(issuePicture).load(card.getImageUrl());
+
+        Ion.with(issuePicture).load(card.getImageUrl());
 
         TextView location =(TextView)findViewById(R.id.location_text_view);
         location.setText(card.getLocation());
