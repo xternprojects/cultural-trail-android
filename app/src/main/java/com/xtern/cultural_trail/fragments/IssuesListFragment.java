@@ -102,6 +102,7 @@ public class IssuesListFragment extends Fragment {
                 for (Issue issue : issues) {
                     IssueListCard issueListCard = new IssueListCard(getActivity());
                     issueListCard.setTag(issue);
+                    issueListCard.setUrgent(issue.priority == 0 ? View.INVISIBLE : View.VISIBLE);
                     issueListCard.setTitle(issue.name);
                     issueListCard.setDescription(issue.description);
                     issueListCard.setImageUrl(issue.picture);
