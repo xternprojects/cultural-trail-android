@@ -3,6 +3,20 @@
     android:layout_height="match_parent"
     tools:context="com.xtern.cultural_trail.fragments.SignUpFragment">
 
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/signup_email_edit_text"
+        android:layout_marginRight="25dp"
+        android:editable="true"
+        android:hint="Email"
+        android:singleLine="true"
+        android:layout_alignTop="@+id/signup_error_textview"
+        android:layout_alignLeft="@+id/signup_username_edittext"
+        android:layout_alignStart="@+id/signup_username_edittext" />
+
 
     <EditText
         android:layout_width="fill_parent"
@@ -69,5 +83,6 @@
         android:gravity="center"
         android:textColor="#ff0000"
         android:textSize="25dp" />
+
 
 </RelativeLayout>

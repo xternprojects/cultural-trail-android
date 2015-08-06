@@ -3,6 +3,7 @@ package com.xtern.cultural_trail.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class SignUpFragment extends Fragment {
     private EditText usernameEditText;
     private EditText passwordEditText;
     private EditText confirmEditText;
+    private EditText emailEditText;
     private TextView errorMessage;
 
     public SignUpFragment() {}
@@ -48,16 +50,19 @@ public class SignUpFragment extends Fragment {
         passwordEditText = (EditText) v.findViewById(R.id.signup_password_edittext);
         confirmEditText = (EditText) v.findViewById(R.id.signup_confirm_edittext);
         errorMessage = (TextView) v.findViewById(R.id.signup_error_textview);
+        emailEditText = (EditText)v.findViewById(R.id.signup_email_edit_text);
 
-        final String username = usernameEditText.getText().toString();
-        final String password = passwordEditText.getText().toString();
-        final String confirm = confirmEditText.getText().toString();
+
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final String username = usernameEditText.getText().toString();
+                final String password = passwordEditText.getText().toString();
+                final String confirm = confirmEditText.getText().toString();
+                final String email  = emailEditText.getText().toString();
                 if ( password.equals(confirm) ) {
-                    signUpUser(username, password);
+                    signUpUser(username, password, email);
                 } else {
                     errorMessage.setText("Please Try Again");
                 }
@@ -66,12 +71,18 @@ public class SignUpFragment extends Fragment {
         return v;
     }
 
-    public void signUpUser(String user, String pass){
+    public void signUpUser(String user, String pass, String email){
         ParseUser parseUser = new ParseUser();
         if ( !user.isEmpty() )
             parseUser.setUsername(user);
+            parseUser.setEmail(user);
         if ( !pass.isEmpty() )
             parseUser.setPassword(pass);
+
+        if(!email.isEmpty()){
+            parseUser.setEmail(email);
+        }
+
         parseUser.signUpInBackground(new SignUpCallback() {
             @Override
             public void done(ParseException e) {
@@ -79,6 +90,7 @@ public class SignUpFragment extends Fragment {
                     Toast.makeText(getActivity(), "Sign Up Complete\n Please Check Your Email", Toast.LENGTH_LONG).show();
                     mainActivity.performFragmentTransaction(LoginFragment.newInstance());
                 } else {
+                    Log.d("Signup", "Error:"+e.getCode());
                     Toast.makeText(getActivity(), e.getCode(), Toast.LENGTH_SHORT).show();
                 }
             }

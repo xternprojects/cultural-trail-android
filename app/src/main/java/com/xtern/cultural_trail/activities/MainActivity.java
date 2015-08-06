@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.parse.Parse;
 import com.parse.ParseUser;
 import com.xtern.cultural_trail.R;
+import com.xtern.cultural_trail.fragments.CreateIssueFragment;
 import com.xtern.cultural_trail.fragments.IssuesListFragment;
 import com.xtern.cultural_trail.fragments.SplashFragment;
 import com.xtern.cultural_trail.models.CulturalTrailRestClient;
@@ -24,8 +25,9 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends ActionBarActivity {
 
+    public static Toolbar toolbar;
     ParseUser currentUser;
 
     @Override
@@ -34,11 +36,15 @@ public class MainActivity extends AppCompatActivity {
         getParseInfo();
         Parse.enableLocalDatastore(this);
         setContentView(R.layout.activity_main);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Issues");
+        toolbar.inflateMenu(R.menu.menu_main);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -72,15 +78,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void loginOrIssues(){
         Fragment fragment;
-        if ( getCurrentUser().isAuthenticated() ){
+        if (ParseUser.getCurrentUser() !=null){
             fragment = new IssuesListFragment();
         } else {
             fragment = new SplashFragment();
         }
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment_container, fragment)
-                .commit();
+
+        performFragmentTransaction(fragment);
     }
 
     public void getParseInfo(){
