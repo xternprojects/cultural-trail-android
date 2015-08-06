@@ -97,7 +97,7 @@ public class CreateIssueFragment extends Fragment implements GoogleApiClient.Con
         final Toolbar toolbar = MainActivity.toolbar;
         toolbar.getMenu().clear();
         toolbar.setTitle("Create Issue");
-        toolbar.setNavigationIcon(R.drawable.ic_action_back);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         toolbar.inflateMenu(R.menu.menu_create);
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
