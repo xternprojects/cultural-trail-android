@@ -1,9 +1,6 @@
 package com.xtern.cultural_trail.fragments;
 
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
@@ -11,9 +8,6 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -26,15 +20,9 @@ import android.widget.TextView;
 import com.koushikdutta.ion.Ion;
 import com.squareup.picasso.Picasso;
 import com.xtern.cultural_trail.R;
-import com.xtern.cultural_trail.adapters.IssueDetailAdapter;
 import com.xtern.cultural_trail.models.Issue;
-import com.xtern.cultural_trail.models.VersionModel;
-
-import org.w3c.dom.Text;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -45,7 +33,6 @@ public class IssueDetailFragment extends Fragment {
     private Issue issue;
     private CollapsingToolbarLayout collapsingToolbar;
     private RecyclerView recyclerView;
-    private IssueDetailAdapter issueDetailAdapter;
     private String TAG = "IssueDetailFragment";
 
 
@@ -66,7 +53,7 @@ public class IssueDetailFragment extends Fragment {
 
         final Toolbar toolbar = (Toolbar) v.findViewById(R.id.toolbar);
         toolbar.setTitle("Issue Detail");
-        toolbar.setNavigationIcon(R.drawable.ic_action_back);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         toolbar.inflateMenu(R.menu.menu_issue_create);
 
         NestedScrollView sv =(NestedScrollView)v.findViewById(R.id.scrollView);
@@ -83,6 +70,7 @@ public class IssueDetailFragment extends Fragment {
         TextView issuename = (TextView)v.findViewById(R.id.issue_name_text_view);
         TextView issuedetail = (TextView)v.findViewById(R.id.issue_detail_text_view);
         TextView location = (TextView) v.findViewById(R.id.location_text_view);
+        ImageView priorityIcon = (ImageView) v.findViewById(R.id.priority_image);
         TextView priority = (TextView)v.findViewById(R.id.priority_text_view);
         TextView reported = (TextView)v.findViewById(R.id.reported_text_view);
 
@@ -97,8 +85,10 @@ public class IssueDetailFragment extends Fragment {
         location.setText("410 Limestone");
 
 
-        priority.setText("Priority " + issue.priority);
-        priority.setTextColor(Color.RED);
+        if(issue.priority > 0) {
+            priority.setText("High Priority");
+            priorityIcon.setImageResource(R.drawable.ic_vertical_align_top_black_36dp);
+        }
         reported.setText("Reported by Ben Wencke");
 
         Uri.Builder uriBuilder = new Uri.Builder();
@@ -107,10 +97,10 @@ public class IssueDetailFragment extends Fragment {
                 .appendPath("maps")
                 .appendPath("api")
                 .appendPath("staticmap")
-                .appendQueryParameter("scale","1")
-                .appendQueryParameter("size","400x100")
+                .appendQueryParameter("scale","2")
+                .appendQueryParameter("size","640x160")
                 .appendQueryParameter("maptype", "roadmap")
-                .appendQueryParameter("markers", "size:mid|color:red|label:1|" + issue.location.lat + "," + issue.location.lng);
+                .appendQueryParameter("markers", "color:red|label:1|" + issue.location.lat + "," + issue.location.lng);
 
         Log.d(TAG,"MapImg " + uriBuilder.build().toString());
 

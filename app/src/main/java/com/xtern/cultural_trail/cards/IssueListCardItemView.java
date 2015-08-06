@@ -9,6 +9,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dexafree.materialList.model.CardItemView;
@@ -35,6 +36,9 @@ public class IssueListCardItemView extends CardItemView<IssueListCard> {
     @Override
     public void build(final IssueListCard card) {
         super.build(card);
+
+        RelativeLayout urgent = (RelativeLayout) findViewById(R.id.urgent);
+        urgent.setVisibility(card.getUrgent());
 
         TextView title = (TextView)findViewById(R.id.issue_name_text_view);
         title.setText(card.getTitle());
