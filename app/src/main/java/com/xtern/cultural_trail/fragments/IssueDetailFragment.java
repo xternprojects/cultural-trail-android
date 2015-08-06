@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -54,6 +55,23 @@ public class IssueDetailFragment extends Fragment {
         final Toolbar toolbar = (Toolbar) v.findViewById(R.id.toolbar);
         toolbar.setTitle("Issue Detail");
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if(item.getItemId() == R.id.action_edit){
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("issue",issue);
+                    EditIssueFragment fragment = new EditIssueFragment();
+                    fragment.setArguments(bundle);
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container, fragment)
+                            .addToBackStack(null)
+                            .commit();
+                }
+                return false;
+            }
+        });
         toolbar.inflateMenu(R.menu.menu_issue_create);
 
         NestedScrollView sv =(NestedScrollView)v.findViewById(R.id.scrollView);

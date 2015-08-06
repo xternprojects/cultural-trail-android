@@ -67,7 +67,6 @@ public class IssuesListFragment extends Fragment {
                         .beginTransaction()
                         .replace(R.id.fragment_container, issueDetailFragment)
                         .addToBackStack(null)
-
                         .commit();
 
             }

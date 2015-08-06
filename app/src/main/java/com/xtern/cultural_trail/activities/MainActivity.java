@@ -3,6 +3,7 @@ package com.xtern.cultural_trail.activities;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -48,25 +49,6 @@ public class MainActivity extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
-    public void setCurrentUser(ParseUser user){
-        Gson gson = new Gson();
-        String json = gson.toJson(user);
-        SharedPreferences sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("CurrentUser", json);
-        editor.apply();
-        this.currentUser = user;
-    }
-
-    public ParseUser getCurrentUser(){
-        SharedPreferences sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString("CurrentUser", "");
-        currentUser = gson.fromJson(json, ParseUser.class);
-        return currentUser;
-    }
-
 
     public void performFragmentTransaction(Fragment fragment){
        getSupportFragmentManager()
