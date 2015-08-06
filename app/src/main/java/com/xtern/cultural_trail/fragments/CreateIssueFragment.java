@@ -33,6 +33,7 @@ import com.cloudinary.Cloudinary;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
+import com.parse.ParseUser;
 import com.squareup.picasso.Picasso;
 import com.xtern.cultural_trail.R;
 import com.xtern.cultural_trail.activities.MainActivity;
@@ -178,7 +179,7 @@ public class CreateIssueFragment extends Fragment implements GoogleApiClient.Con
     public void createNewIssue(){
         String issueName = damageType + " " + damageItem;
         String issueDescription = issueDescriptionField.getText().toString();
-        String reportedBy = "Kyle";
+        String reportedBy = ParseUser.getCurrentUser().getUsername();
         LocalDate localDate = new LocalDate();
         android.location.Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
@@ -188,7 +189,7 @@ public class CreateIssueFragment extends Fragment implements GoogleApiClient.Con
         }
 
 
-        Issue newIssue = new Issue(issueName, issueDescription, priority, true, location, localDate.toString(), localDate.toString(), cloudinary.url().generate(imageName));
+        Issue newIssue = new Issue(issueName, issueDescription, priority, true, location, reportedBy, localDate.toString(), localDate.toString(), cloudinary.url().generate(imageName));
         submitIssue(newIssue);
     }
 

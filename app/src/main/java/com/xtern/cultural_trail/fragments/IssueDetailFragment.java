@@ -89,7 +89,7 @@ public class IssueDetailFragment extends Fragment {
             priority.setText("High Priority");
             priorityIcon.setImageResource(R.drawable.ic_vertical_align_top_black_36dp);
         }
-        reported.setText("Reported by Ben Wencke");
+        reported.setText(issue.reportedBy);
 
         Uri.Builder uriBuilder = new Uri.Builder();
         uriBuilder.scheme("http")

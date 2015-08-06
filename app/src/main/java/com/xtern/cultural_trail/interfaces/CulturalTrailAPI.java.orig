@@ -1,8 +1,12 @@
 package com.xtern.cultural_trail.interfaces;
 
+import com.pnikosis.materialishprogress.ProgressWheel;
 import com.xtern.cultural_trail.models.Issue;
+<<<<<<< HEAD
 import com.xtern.cultural_trail.models.ParseInfo;
+=======
 import com.xtern.cultural_trail.models.PhotoAuth;
+>>>>>>> master
 
 import java.util.List;
 
@@ -19,12 +23,14 @@ public interface CulturalTrailAPI {
     @GET("/issues")
     void getIssues(Callback<List<Issue>> callback);
 
+<<<<<<< HEAD
+    @GET("/parse/auth")
+    void getLoginInfo(Callback<ParseInfo> callback);
+=======
     @POST("/issues")
     void postIssue(@Body Issue newIssue, Callback<Void> callback);
 
-    @GET("/parse/auth")
-    void getLoginInfo(Callback<ParseInfo> callback);
-
     @GET("/picture/auth")
     void getPictureAuth(@Query("public_id") String public_id, Callback<PhotoAuth> callback);
+>>>>>>> master
 }
