@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="light_damages">
+        <item>Graffiti</item>
+        <item>Out</item>
+        <item>Broken</item>
+        <item>Destroyed</item>
+    </string-array>
+    <string-array name="bench_damages">
+        <item>Graffiti</item>
+        <item>Out</item>
+        <item>Broken</item>
+        <item>Destroyed</item>
+    </string-array>
+    <string-array name="crossing_signal_damages">
+        <item>No Hand</item>
+        <item>No Walk</item>
+        <item>Crooked</item>
+    </string-array>
+    <string-array name="sign_damages">
+        <item>Graffiti</item>
+        <item>Bent</item>
+        <item>Broken</item>
+        <item>Destroyed</item>
+    </string-array>
+    <string-array name="edging_damages">
+        <item>Loose</item>
+        <item>Broken</item>
+        <item>Missing</item>
+    </string-array>
+    <string-array name="bollard_damages">
+        <item>Graffiti</item>
+        <item>Loose</item>
+        <item>Impacted</item>
+        <item>Destroyed</item>
+    </string-array>
+    <string-array name="paver_damages">
+        <item>Soiled</item>
+        <item>Broken</item>
+        <item>Missing</item>
+    </string-array>
+    <string-array name="crossing_button_damages">
+        <item>Graffiti</item>
+        <item>No Soound</item>
+        <item>No Push</item>
+    </string-array>
+    <string-array name="control_box_damages">
+        <item>Graffiti</item>
+        <item>Light Sensor</item>
+        <item>Damaged</item>
+        <item>Destroyed</item>
+    </string-array>
+    <string-array name="sprinkler_damages">
+        <item>Graffiti</item>
+        <item>Damaged</item>
+    </string-array>
+    <string-array name="curb_damages">
+        <item>Broken</item>
+    </string-array>
+    <string-array name="trash_can_damages">
+        <item>Graffiti</item>
+        <item>Loose</item>
+        <item>Latch</item>
+        <item>Pin</item>
+        <item>Door</item>
+        <item>Top</item>
+        <item>Destroyed</item>
+    </string-array>
+    <string-array name="recycling_can_damages">
+        <item>Loose</item>
+        <item>Latch</item>
+        <item>Pin</item>
+        <item>Door</item>
+        <item>Top</item>
+        <item>Destroyed</item>
+    </string-array>
+    <string-array name="glass_damages">
+        <item>Found</item>
+    </string-array>
+    <string-array name="art_damages">
+        <item>Graffiti</item>
+    </string-array>
+</resources>
