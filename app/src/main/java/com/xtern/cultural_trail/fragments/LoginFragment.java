@@ -69,7 +69,6 @@ public class LoginFragment extends Fragment {
                 if ( e != null ){
                     Toast.makeText(getActivity(), "Login Error, please try again", Toast.LENGTH_LONG).show();
                 } else {
-                    mainActivity.setCurrentUser(parseUser);
                     mainActivity.performFragmentTransaction(new IssuesListFragment());
                 }
             }

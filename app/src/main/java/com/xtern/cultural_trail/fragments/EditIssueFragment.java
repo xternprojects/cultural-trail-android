@@ -1,11 +1,23 @@
 package com.xtern.cultural_trail.fragments;
 
+
+import android.os.Bundle;
+import android.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.xtern.cultural_trail.R;
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v4.app.Fragment;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -49,7 +61,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class CreateIssueFragment extends Fragment implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class EditIssueFragment extends android.support.v4.app.Fragment {
 
     private EditText issueDescriptionField;
     private Switch prioritySwitch;
@@ -65,24 +77,29 @@ public class CreateIssueFragment extends Fragment implements GoogleApiClient.Con
     private File photoFile;
     String mCurrentPhotoPath;
     Map config = new HashMap();
-    private String TAG = "CreateIssueFragment";
+    private Issue issue;
+    private String TAG = "EditIssueFragment";
     public static CreateIssueFragment newInstance() {
         CreateIssueFragment fragment = new CreateIssueFragment();
         return fragment;
     }
 
-    public CreateIssueFragment() {}
+    public EditIssueFragment() {}
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_create_issue, container, false);
 
+        Bundle args = getArguments();
+        issue = (Issue) args.getSerializable("issue");
+
+
         priority = 0;
 
         final Toolbar toolbar = MainActivity.toolbar;
         toolbar.getMenu().clear();
-        toolbar.setTitle("Create Issue");
+        toolbar.setTitle("Edit Issue");
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         toolbar.inflateMenu(R.menu.menu_create);
 
@@ -90,10 +107,7 @@ public class CreateIssueFragment extends Fragment implements GoogleApiClient.Con
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.action_submit) {
-                    createNewIssue();
-                    toolbar.getMenu().clear();
-                    toolbar.setTitle("Issues");
-                    toolbar.inflateMenu(R.menu.menu_main);
+                    editIssue();
                     getActivity().getSupportFragmentManager().popBackStack();
                 }
                 return false;
@@ -107,28 +121,33 @@ public class CreateIssueFragment extends Fragment implements GoogleApiClient.Con
         imageName =  UUID.randomUUID().toString();
         issueImage = (ImageView)v.findViewById(R.id.issue_image);
         Picasso.with(getActivity())
-                .load(R.drawable.placeholder)
+                .load(issue.picture)
                 .resize(500,500)
                 .into(issueImage);
 
 
         prioritySwitch = (Switch)v.findViewById(R.id.priority_switch);
+        if(issue.priority == 1){
+            prioritySwitch.setChecked(true);
+        } else {
+            prioritySwitch.setChecked(false);
+        }
         prioritySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(priority == 0){
-                    priority = 1;
-                } else if(priority == 1){
-                    priority = 0;
+                if(issue.priority == 0){
+                    issue.priority = 1;
+                } else if(issue.priority == 1){
+                    issue.priority = 0;
                 }
             }
         });
 
         issueDescriptionField = (EditText)v.findViewById(R.id.edit_issue_description_edit_text);
+        issueDescriptionField.setText(issue.description);
 
         issue_edit = (EditText)v.findViewById(R.id.edit_issue_edit_view);
-
-
+        issue_edit.setText(issue.name);
         issue_edit.setFocusable(false);
 
         issue_edit.setOnClickListener(new View.OnClickListener() {
@@ -138,7 +157,6 @@ public class CreateIssueFragment extends Fragment implements GoogleApiClient.Con
             }
         });
 
-        issueImage = (ImageView)v.findViewById(R.id.issue_image);
         issueImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,35 +170,38 @@ public class CreateIssueFragment extends Fragment implements GoogleApiClient.Con
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
     }
 
 
 
-    public void createNewIssue(){
-        String issueName = damageType + " " + damageItem;
+    public void editIssue(){
+        String issueName ;
+        if(damageType == null || damageItem == null){
+            issueName = issue.name;
+        } else {
+            issueName = damageType +" " + damageItem;
+        }
         String issueDescription = issueDescriptionField.getText().toString();
         String reportedBy = ParseUser.getCurrentUser().getUsername();
         LocalDate localDate = new LocalDate();
-        android.location.Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(
-                mGoogleApiClient);
-        Location location = null;
-        if(lastLocation != null){
-            location = new Location(lastLocation.getLatitude(),lastLocation.getLongitude());
+
+        String imgUrl;
+        if(mCurrentPhotoPath != null){
+            imgUrl =cloudinary.url().generate(imageName);
+        } else {
+            imgUrl = issue.picture;
         }
 
 
-        Issue newIssue = new Issue(null,issueName, issueDescription, priority, true, location, reportedBy, localDate.toString(), localDate.toString(), cloudinary.url().generate(imageName));
+
+
+        Issue newIssue = new Issue(issue._id,issueName, issueDescription, issue.priority, true, issue.location, issue.reportedBy, localDate.toString(), localDate.toString(), imgUrl);
         submitIssue(newIssue);
     }
 
 
     public void submitIssue(Issue issue){
-        CulturalTrailRestClient.getClient().postIssue(issue, new Callback<Void>() {
+        CulturalTrailRestClient.getClient().editIssue(issue, new Callback<Void>() {
             @Override
             public void success(Void aVoid, Response response) {
                 Log.d("API", "Success");
@@ -198,34 +219,6 @@ public class CreateIssueFragment extends Fragment implements GoogleApiClient.Con
         inflater.inflate(R.menu.menu_issue_create, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
-
-    @Override
-    public void onConnected(Bundle bundle) {
-        Log.d(TAG, "GPS Connected");
-
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        mGoogleApiClient.connect();
-    }
-    @Override
-    public void onStop() {
-        mGoogleApiClient.disconnect();
-        super.onStop();
-    }
-
 
 
     private File createImageFile() throws IOException {
@@ -340,7 +333,6 @@ public class CreateIssueFragment extends Fragment implements GoogleApiClient.Con
                 MaterialDialog.Builder damagerBuilder = new MaterialDialog.Builder(getActivity());
                 damagerBuilder.title(charSequence);
                 int damageArray = getDamageArray(charSequence.toString());
-                Log.d(TAG, "DamageArray=" + damageArray);
                 damagerBuilder.items(damageArray);
                 final MaterialDialog damageDialog = damagerBuilder.build();
                 damagerBuilder.itemsCallback(new MaterialDialog.ListCallback() {

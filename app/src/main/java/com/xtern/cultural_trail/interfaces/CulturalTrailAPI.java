@@ -10,6 +10,7 @@ import retrofit.Callback;
 import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.POST;
+import retrofit.http.PUT;
 import retrofit.http.Query;
 
 /**
@@ -21,6 +22,9 @@ public interface CulturalTrailAPI {
 
     @POST("/issues")
     void postIssue(@Body Issue newIssue, Callback<Void> callback);
+
+    @PUT("/issues")
+    void editIssue(@Body Issue issue, Callback<Void> callback);
 
     @GET("/parse/auth")
     void getLoginInfo(Callback<ParseInfo> callback);
