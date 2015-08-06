@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array
+        name="main_items">
+        <item>Light</item>
+        <item>Bench</item>
+        <item>Crossing Signal</item>
+        <item>Trail Sign</item>
+        <item>Edging</item>
+        <item>Bollard</item>
+        <item>Paver</item>
+        <item>Crossing push button</item>
+        <item>Light control box</item>
+        <item>Sprinkler Box</item>
+        <item>Curb</item>
+        <item>Trash Can</item>
+        <item>Recycling Can</item>
+        <item>Glass/Debris</item>
+        <item>Art Installation</item>
+    </string-array>
+</resources>

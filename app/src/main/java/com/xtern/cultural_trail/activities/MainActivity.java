@@ -15,11 +15,13 @@ import com.xtern.cultural_trail.fragments.IssuesListFragment;
 
 public class MainActivity extends ActionBarActivity {
 
+    public static Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Issues");
         toolbar.inflateMenu(R.menu.menu_main);
         performFragmentTransaction(new IssuesListFragment());
